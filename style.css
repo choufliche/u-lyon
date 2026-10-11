@@ -1,0 +1,103 @@
+/*
+Theme Name: Kadence child
+Template: Kadence
+Version: 1.5.2
+*/
+
+body {
+    margin-bottom: 0px;
+}
+
+/* Séparateur vertical entre les items du menu principal Kadence */
+.site-main-header-wrap .primary-menu-container > ul > li:not(:last-child) > a {
+  border-right: 1px solid #fff;
+  padding: 5px;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Masque les puces de liste par défaut dans le contenu des articles */
+.single-post .entry-content ul,
+.single-post .entry-content ol {
+    list-style: none !important;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.site-footer-middle-section-2,
+.site-footer-middle-section-3 {
+  border-right: 1px solid #14518e;
+  padding: 5px;
+  margin: 5px;
+}
+
+.footer-menu.li {
+  display: flex;
+  flex-direction: column;
+}
+
+#colophon {
+  position: relative !important;
+  overflow: visible !important;
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  padding: 2rem 1rem;
+  border-top: 1px solid #1e548b;
+}
+
+#colophon::after {
+  content: url("/wp-content/themes/kadence-child/assets/images/URIVALYON_Vague5 1.png");
+  position: absolute !important;
+  bottom: -10px !important;
+  right: 0px !important;
+  transform: scale(1.1);
+  transform-origin: bottom right;
+  z-index: -1 !important;
+  display: block !important;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 1023px) {
+  #colophon::after {
+    transform: scale(1) !important; 
+    bottom: -10px !important;
+    right: -5px !important;
+  }
+
+  .site-footer-middle-section-2,
+.site-footer-middle-section-3 {
+  border-right: none;
+  padding: 5px;
+  margin: 5px;
+}
+}
+
+ul.splide__pagination.splide__pagination--ltr {
+  display: none;
+}
+
+button.splide__arrow.splide__arrow--prev.slick-prev, button.splide__arrow.splide__arrow--next.slick-next {
+  border-radius: 32px;
+  width: 3em;
+  margin-inline: 1em;
+  color: #32ad64
+}
+
+.button.splide__arrow.splide__arrow--prev.slick-prev svg {
+  display: none !important;
+}
+
+.button.splide__arrow.splide__arrow--prev.slick-prev::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='/wp-content/themes/kadence-child/assets/images/Vector.svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
