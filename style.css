@@ -4,8 +4,10 @@ Template: Kadence
 Version: 1.5.2
 */
 
-body {
-    margin-bottom: 0px;
+html, body {
+  position: relative !important;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 
 /* Séparateur vertical entre les items du menu principal Kadence */
@@ -20,9 +22,9 @@ body {
 /* Masque les puces de liste par défaut dans le contenu des articles */
 .single-post .entry-content ul,
 .single-post .entry-content ol {
-    list-style: none !important;
-    padding-left: 0;
-    margin-left: 0;
+  list-style: none !important;
+  padding-left: 0;
+  margin-left: 0;
 }
 
 .site-footer-middle-section-2,
@@ -38,7 +40,6 @@ body {
 }
 
 #colophon {
-  position: relative !important;
   overflow: visible !important;
   max-width: 1320px;
   margin-left: auto;
@@ -48,42 +49,46 @@ body {
   border-top: 1px solid #1e548b;
 }
 
-#colophon::after {
-  content: url("/wp-content/themes/kadence-child/assets/images/URIVALYON_Vague5 1.png");
-  position: absolute !important;
-  bottom: -10px !important;
-  right: 0px !important;
-  transform: scale(1.1);
-  transform-origin: bottom right;
-  z-index: -1 !important;
+footer, 
+.site-footer, 
+#colophon,
+.site-bottom-footer-wrap {
+  position: relative !important;
+  z-index: 10 !important;        /* Le footer est au-dessus (z-index 10 > z-index 1 de l'image) */
+}
+
+.body-overflow-img {
+  position: absolute !important; /* Se positionne par rapport au tout début du body, couvrant toute la hauteur de la page */
+  bottom: 0 !important;          /* Vient se caler tout en bas de la page */
+  right: 0 !important;           /* Collé au bord droit */
   display: block !important;
-  pointer-events: none;
+  margin: 0 !important;
+  padding: 0 !important;
+  z-index: 1 !important;         /* Placé derrière le footer */
+  max-width: 900px;              /* Ajustez la taille de votre image selon vos besoins */
+  height: auto;
+  pointer-events: none;          /* Permet de cliquer à travers l'image[cite: 1] */
 }
 
 @media screen and (max-width: 1023px) {
-  #colophon::after {
-    transform: scale(1) !important; 
-    bottom: -10px !important;
-    right: -5px !important;
-  }
-
   .site-footer-middle-section-2,
-.site-footer-middle-section-3 {
-  border-right: none;
-  padding: 5px;
-  margin: 5px;
-}
+  .site-footer-middle-section-3 {
+    border-right: none;
+    padding: 5px;
+    margin: 5px;
+  }
 }
 
 ul.splide__pagination.splide__pagination--ltr {
   display: none;
 }
 
-button.splide__arrow.splide__arrow--prev.slick-prev, button.splide__arrow.splide__arrow--next.slick-next {
+button.splide__arrow.splide__arrow--prev.slick-prev,
+button.splide__arrow.splide__arrow--next.slick-next {
   border-radius: 32px;
   width: 3em;
   margin-inline: 1em;
-  color: #32ad64
+  color: #32ad64;
 }
 
 .button.splide__arrow.splide__arrow--prev.slick-prev svg {
@@ -100,4 +105,142 @@ button.splide__arrow.splide__arrow--prev.slick-prev, button.splide__arrow.splide
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+}
+
+.primary-menu-container ul.menu li.current-menu-item > a,
+.primary-menu-container ul.menu li.current-menu-ancestor > a,
+.footer-menu-container ul.menu li.current-menu-item > a:hover,
+.footer-menu-container ul.menu li.current-menu-ancestor > a:hover {
+  font-weight: 600 !important;
+}
+
+.carrousel-who ul.splide__pagination.splide__pagination--ltr {
+  display: flex;
+}
+.carrousel-who .splide__pagination__page.is-active {
+  box-shadow: inset 0 0 0 8px #32ad64 !important;
+}
+
+.carrousel-who .splide__pagination__page {
+  box-shadow: inset 0 0 0 8px #bebebe !important;
+}
+
+/* 1. Pour la section Support */
+.support-who .kt-row-layout-overlay {
+  top: -27px !important;
+  height: 37% !important;
+  width: 88% !important;
+  z-index: 2 !important;
+}
+
+/* 2. Pour la section Team */
+.team-who .kt-row-layout-overlay {
+  transform: scaleX(-1);
+  left: 909px !important;
+  top: 1350px !important;
+  height: 26% !important;
+  width: 54% !important;
+}
+
+.wp-block-kadence-column .kt-inside-inner-col {
+  transition: none;
+}
+
+.card-zoom,
+.card-zoom > .kt-section-inner,
+.card-zoom .kadence-section-content {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  transform: translateZ(0);
+}
+
+/* 2. Photo de fond */
+.card-zoom .photo-bg img {
+  transition: transform 0.4s ease-in-out;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 3. Effet Zoom au survol de la section */
+.card-zoom:hover .photo-bg img {
+  transform: scale(1.08);
+}
+
+/* 4. Immobilisation du logo */
+.card-zoom .logo-overlay {
+  position: absolute;
+  bottom: 20px;
+  right: 8px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.plant-diag .kt-row-layout-overlay {
+  transform: rotate(-33deg);
+  top: -390px !important;
+  height: 170% !important;
+  width: 110% !important;
+}
+
+.plant-diag {
+  position: relative;
+  z-index: 1;
+  overflow: visible !important;
+}
+
+.event-section {
+  position: relative;
+  z-index: 2;
+}
+
+.transition-text-section .kt-row-layout-overlay {
+  transform: scaleX(-1);
+  left: 418px !important;
+  top: -120px !important;
+  height: 50% !important;
+  width: 108% !important;
+}
+
+.urivalyon-collectif .kt-row-layout-overlay {
+  left: -450px !important;
+  top: -30px !important;
+  height: 300% !important;
+  width: 100% !important;
+  transform: scaleY(-1);
+  z-index: 2 !important;
+}
+
+.custom-header-btn {
+  font-size: 18px !important;
+}
+
+.custom-header-btn .alignnone {
+  width: 18px;
+  height: auto;
+  margin-left: 8px !important;
+  vertical-align: middle;
+  transition: filter 0.2s ease;
+}
+
+.custom-header-btn:hover .alignnone {
+  filter: brightness(0) invert(1);
+}
+
+.kb-row-layout-id416_52a0c6-01 {
+  background-position: 100% -12% !important;
+}
+
+.page-id-421 .custom-header-btn {
+  background-color: #32ad64 !important; /* Couleur de fond du survol */
+  color: #ffffff !important; 
+  border: 1.5px solid #ffffff !important;
+}
+
+.page-id-421 .custom-header-btn .alignnone {
+  filter: brightness(0) invert(1);
+}
+
+.accompaniement .kb-row-layout-id416_52a0c6-01 {
+  opacity: 0.4;
 }
