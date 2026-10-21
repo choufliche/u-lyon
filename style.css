@@ -4,10 +4,13 @@ Template: Kadence
 Version: 1.5.2
 */
 
-html, body {
+html,
+body {
   position: relative !important;
   overflow-x: hidden;
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 /* Séparateur vertical entre les items du menu principal Kadence */
@@ -49,25 +52,25 @@ html, body {
   border-top: 1px solid #1e548b;
 }
 
-footer, 
-.site-footer, 
+footer,
+.site-footer,
 #colophon,
 .site-bottom-footer-wrap {
   position: relative !important;
-  z-index: 10 !important;        /* Le footer est au-dessus (z-index 10 > z-index 1 de l'image) */
+  z-index: 10 !important;
 }
 
 .body-overflow-img {
-  position: absolute !important; /* Se positionne par rapport au tout début du body, couvrant toute la hauteur de la page */
-  bottom: 0 !important;          /* Vient se caler tout en bas de la page */
-  right: 0 !important;           /* Collé au bord droit */
+  position: absolute !important;
+  bottom: 0 !important;
+  right: 0 !important;
   display: block !important;
   margin: 0 !important;
   padding: 0 !important;
-  z-index: 1 !important;         /* Placé derrière le footer */
-  max-width: 900px;              /* Ajustez la taille de votre image selon vos besoins */
+  z-index: 1 !important;
+  max-width: 900px;
   height: auto;
-  pointer-events: none;          /* Permet de cliquer à travers l'image[cite: 1] */
+  pointer-events: none;
 }
 
 @media screen and (max-width: 1023px) {
@@ -109,11 +112,14 @@ button.splide__arrow.splide__arrow--next.slick-next {
 
 .primary-menu-container ul.menu li.current-menu-item > a,
 .primary-menu-container ul.menu li.current-menu-ancestor > a,
-.footer-menu-container ul.menu li.current-menu-item > a:hover,
-.footer-menu-container ul.menu li.current-menu-ancestor > a:hover {
+.primary-menu-container ul.menu li.menu-item > a:hover,
+.primary-menu-container ul.menu li.menu-ancestor > a:hover,
+.footer-menu-container ul.menu li.menu-item > a:hover,
+.footer-menu-container ul.menu li.menu-ancestor > a:hover {
   font-weight: 600 !important;
 }
 
+/* Diaporama de photos dans les pages */
 .carrousel-who ul.splide__pagination.splide__pagination--ltr {
   display: flex;
 }
@@ -125,22 +131,21 @@ button.splide__arrow.splide__arrow--next.slick-next {
   box-shadow: inset 0 0 0 8px #bebebe !important;
 }
 
-/* 1. Pour la section Support */
-.support-who .kt-row-layout-overlay {
-  top: -27px !important;
-  height: 37% !important;
-  width: 88% !important;
-  z-index: 2 !important;
+.diaporama .splide__arrow--prev {
+  left: 39% !important;
+  top: 100% !important;
+  transform: translateY(0) !important;
+  height: 2em !important;
 }
 
-/* 2. Pour la section Team */
-.team-who .kt-row-layout-overlay {
-  transform: scaleX(-1);
-  left: 909px !important;
-  top: 1350px !important;
-  height: 26% !important;
-  width: 54% !important;
+.diaporama .splide__arrow--next {
+  left: calc(39% + 92px) !important;
+  top: 100% !important;
+  transform: translateY(0) !important;
+  height: 2em !important;
 }
+
+/* ------ */
 
 .wp-block-kadence-column .kt-inside-inner-col {
   transition: none;
@@ -196,19 +201,67 @@ button.splide__arrow.splide__arrow--next.slick-next {
 
 .transition-text-section .kt-row-layout-overlay {
   transform: scaleX(-1);
-  left: 418px !important;
-  top: -120px !important;
+  position: absolute !important;
+  left: auto !important;
+  right: calc((100vw - 100%) / -2) !important;
   height: 50% !important;
-  width: 108% !important;
+  width: 1000px !important;
+  z-index: 20 !important;
+  top: -90px !important;
+
 }
 
-.urivalyon-collectif .kt-row-layout-overlay {
-  left: -450px !important;
-  top: -30px !important;
-  height: 300% !important;
-  width: 100% !important;
-  transform: scaleY(-1);
-  z-index: 2 !important;
+.urivalyon-collectif,
+.team-who, .transition-text-section {
+  position: relative !important;
+  overflow: visible !important;
+  z-index: 10 !important;
+}
+
+.urivalyon-collectif .tige-flottante {
+  position: absolute !important;
+  left: calc((100vw - 100%) / -2) !important;
+  bottom: -250px !important; /* C'est ici que vous décalez l'image vers le bas */
+  width: 900px !important; /* Ajustez la taille selon vos besoins */
+  height: auto !important;
+  z-index: 20 !important; /* Passe par-dessus la rangée suivante */
+}
+
+.team-who .kt-row-layout-overlay {
+  position: absolute !important;
+  z-index: 20 !important;
+  transform: scaleX(-1);
+  left: auto !important;
+  right: calc((130vw - 100%) / -2) !important;
+  top: 1500px !important;
+  height: 26% !important;
+  width: 54% !important;
+}
+
+.support-who {
+  position: relative !important; /* Devient le point d'ancrage */
+  display: inline-block; /* S'adapte à la taille de l'image si besoin */
+}
+
+.support-who .form {
+  position: absolute !important;
+  z-index: 20 !important;
+  top: -104px !important;
+  left: 58% !important; /* Se place exactement à droite, au bout de l'image */
+  bottom: auto !important;
+  right: auto !important;
+  width: 308px !important;
+  z-index: 20 !important;
+}
+
+.support-who .funding {
+  position: absolute !important;
+  z-index: 20 !important;
+  top: 340px !important;
+  left: 4% !important; /* Se place exactement à droite, au bout de l'image */
+  bottom: auto !important;
+  right: auto !important;
+  z-index: 20 !important;
 }
 
 .custom-header-btn {
@@ -233,7 +286,7 @@ button.splide__arrow.splide__arrow--next.slick-next {
 
 .page-id-421 .custom-header-btn {
   background-color: #32ad64 !important; /* Couleur de fond du survol */
-  color: #ffffff !important; 
+  color: #ffffff !important;
   border: 1.5px solid #ffffff !important;
 }
 
